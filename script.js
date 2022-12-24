@@ -1,6 +1,11 @@
 const selection = document.querySelectorAll("select");
 const currenttime = document.querySelector("h1");
 const AlarmBtn = document.querySelector("button");
+const content = document.querySelector(".content");
+var gif = document.getElementById("clock");
+let alarmTime;
+let ringtone = new Audio("./files/Goofy cartoon sounds.mp3");
+
 //creating selections to select time
 for (let i = 12; i > 0; i--) {
   i = i < 10 ? "0" + i : i;
@@ -45,4 +50,27 @@ setInterval(() => {
   s = s < 10 ? "0" + s : s;
   //displaying the clock
   currenttime.innerText = `${h}:${m}:${s} ${ap}`;
+
+  if (alarmTime === `${h}:${m}:${s} ${ap}`) {
+    gif.src = "./files/gfff.gif";
+    ringtone.play();
+    ringtone.loop = true;
+  }
 }, 1000);
+
+function setAlarm() {
+  //getting exact time value
+  let time = `${selection[0].value}:${selection[1].value}:${selection[2].value} ${selection[3].value}`;
+  //setting checks for invalid alarms
+  if (
+    time.includes("Hour") ||
+    time.includes("Minute") ||
+    time.includes("Seconds") ||
+    time.includes("AM/PM")
+  ) {
+    return alert("enter valid time");
+  }
+  alarmTime = time;
+  // content.classList.add("disable");
+}
+AlarmBtn.addEventListener("click", setAlarm);
