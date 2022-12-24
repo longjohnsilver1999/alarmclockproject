@@ -9,47 +9,42 @@
     <title>Alarm clock in js</title>
   </head>
   <body>
-    <div class="wrapper">
-      <img src="files/alarm-clock-svgrepo-com.svg" alt="clock" id="clock" />
-      <h1>00:00:00 PM</h1>
-      <div class="content">
-        <div class="column">
-          <select>
-            <option value="Hour" selected hidden>Hour</option>
-            <option value="01">01</option>
-            <option value="02">02</option>
-            <option value="03">03</option>
-          </select>
-        </div>
-        <div class="column">
-          <select>
-            <option value="Minute" selected hidden>Minute</option>
-            <option value="01">01</option>
-            <option value="02">02</option>
-            <option value="03">03</option>
-          </select>
-        </div>
-        <div class="column">
-          <select>
-            <option value="Seconds" selected hidden>Seconds</option>
-            <option value="01">01</option>
-            <option value="02">02</option>
-            <option value="03">03</option>
-          </select>
-        </div>
+    <div class="ac">
+      <div class="wrapper">
+        <img src="files/alarm-clock-svgrepo-com.svg" alt="clock" id="clock" />
+        <h1>00:00:00 PM</h1>
+        <div class="content">
+          <div class="column">
+            <select>
+              <option value="Hour" selected hidden>Hour</option>
+            </select>
+          </div>
+          <div class="column">
+            <select>
+              <option value="Minute" selected hidden>Minute</option>
+            </select>
+          </div>
+          <div class="column">
+            <select>
+              <option value="Seconds" selected hidden>Seconds</option>
+            </select>
+          </div>
 
-        <div class="column">
-          <select>
-            <option value="AM/PM" selected hidden>AM/PM</option>
-            <option value="AM">AM</option>
-            <option value="PM">PM</option>
-          </select>
-        </div>
+          <div class="column">
+            <select>
+              <option value="AM/PM" selected hidden>AM/PM</option>
+            </select>
+          </div>
 
-        <button>set alarm</button>
+          <button>set alarm</button>
+        </div>
       </div>
     </div>
 
-    <div class="alarm-list"></div>
+    <div class="alarm-list">
+      <h1>Alarms</h1>
+      <div class=""></div>
+    </div>
+    <script src="script.js"></script>
   </body>
 </html>
