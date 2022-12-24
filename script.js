@@ -54,7 +54,7 @@ setInterval(() => {
   //displaying the clock
   currenttime.innerText = `${h}:${m}:${s} ${ap}`;
 
-  for (let j = 0; j <= index; j++) {
+  for (let j = 0; j <= alarmTime.length; j++) {
     if (alarmTime[j] === `${h}:${m}:${s} ${ap}`) {
       gif.src = "./files/gfff.gif";
       ringtone.play();
@@ -76,13 +76,18 @@ function setAlarm() {
     return alert("enter valid time");
   }
   isAlarmSet = true;
-  alarmTime[index] = time;
-  index = index + 1;
+  alarmTime.push(time);
+
+  for (let d = 0; d < alarmTime.length; d++) {
+    console.log(alarmTime[d]);
+  }
+
   //alarmTime = time;
   // content.classList.add("disable");
 
   var para = document.createElement("p");
   para.innerText = `${selection[0].value}:${selection[1].value}:${selection[2].value} ${selection[3].value}`;
+
   displayAlm.appendChild(para);
   var btn = document.createElement("button");
   btn.innerHTML = "delete alarm ";
@@ -94,17 +99,22 @@ AlarmBtn.addEventListener("click", setAlarm);
 
 function clearAlarm() {
   if (isAlarmSet) {
-    alarmTime[index] = alarmTime[index + 1];
-    index = index - 1;
+    for (let z = 0; z < alarmTime.length; z++) {
+      alarmTime[z] = alarmTime[z + 1];
+    }
+    alarmTime.length = alarmTime.length - 1;
     gif.src = "./files/alarm-clock-svgrepo-com.svg";
     ringtone.pause();
 
+    for (let d = 0; d < alarmTime.length; d++) {
+      console.log(alarmTime[d]);
+    }
     return (isAlarmSet = false);
   }
 }
 ClearBtn.addEventListener("click", clearAlarm);
 
 function deleteAlarm() {
-  displayAlm.removeChild(para);
-  displayAlm.removeChild(btn);
+  displayAlm.parentNode.removeChild(displayAlm);
+  alarmTime = [];
 }
