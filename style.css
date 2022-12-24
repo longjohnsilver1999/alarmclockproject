@@ -72,5 +72,8 @@ body {
   box-shadow: 5px 5px 5px lightgreen;
 }
 
-.alarm-list {
+#alarm-list {
+  padding-left: 30px;
+  padding-top: 20px;
+  padding-bottom: 30px;
 }

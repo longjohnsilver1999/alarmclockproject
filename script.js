@@ -3,8 +3,10 @@ const currenttime = document.querySelector("h1");
 const AlarmBtn = document.querySelector("button");
 const ClearBtn = document.getElementById("cl-b");
 const content = document.querySelector(".content");
+const displayAlm = document.getElementById("alarm-list");
 var gif = document.getElementById("clock");
-let alarmTime;
+let alarmTime = [];
+let index = 0;
 let ringtone = new Audio("./files/Goofy cartoon sounds.mp3");
 let isAlarmSet = false;
 //creating selections to select time
@@ -52,10 +54,12 @@ setInterval(() => {
   //displaying the clock
   currenttime.innerText = `${h}:${m}:${s} ${ap}`;
 
-  if (alarmTime === `${h}:${m}:${s} ${ap}`) {
-    gif.src = "./files/gfff.gif";
-    ringtone.play();
-    ringtone.loop = true;
+  for (let j = 0; j <= index; j++) {
+    if (alarmTime[j] === `${h}:${m}:${s} ${ap}`) {
+      gif.src = "./files/gfff.gif";
+      ringtone.play();
+      ringtone.loop = true;
+    }
   }
 }, 1000);
 
@@ -72,15 +76,26 @@ function setAlarm() {
     return alert("enter valid time");
   }
   isAlarmSet = true;
-  alarmTime = time;
+  alarmTime[index] = time;
+  index = index + 1;
+  //alarmTime = time;
   // content.classList.add("disable");
+
+  var para = document.createElement("p");
+  para.innerText = `${selection[0].value}:${selection[1].value}:${selection[2].value} ${selection[3].value}`;
+  displayAlm.appendChild(para);
+  var btn = document.createElement("button");
+  btn.innerHTML = "delete alarm ";
+  btn.addEventListener("click", deleteAlarm);
+  displayAlm.appendChild(btn);
 }
 
 AlarmBtn.addEventListener("click", setAlarm);
 
 function clearAlarm() {
   if (isAlarmSet) {
-    alarmTime = "";
+    alarmTime[index] = alarmTime[index + 1];
+    index = index - 1;
     gif.src = "./files/alarm-clock-svgrepo-com.svg";
     ringtone.pause();
 
@@ -88,3 +103,8 @@ function clearAlarm() {
   }
 }
 ClearBtn.addEventListener("click", clearAlarm);
+
+function deleteAlarm() {
+  displayAlm.removeChild(para);
+  displayAlm.removeChild(btn);
+}
